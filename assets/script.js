@@ -2,20 +2,19 @@
 var currentDate = moment().format("dddd, MMMM Do");
 $('#currentDay').text(currentDate);
 
-// Collects all the description boxes and stores them in an array
-// var descriptionListEl = $('.description');
+// Identifies what hour it is currently 
+var currentTime = moment().format("H");
 
 // Creates save buttons array
 var saveButtons = $('.saveBtn');
 
 function handleFormSubmit(event) {
   event.preventDefault();
+
+  // When each submit event occurs, the id at which it occurred and the text being saved are identified and saved
   var scheduleId = $(this).siblings('.description').attr("id");
   var scheduleItem = $(this).siblings('.description').val()
-  // var scheduleItem = $('input[name="task-input"]').val();
-  // console.log(scheduleId, scheduleItem)
 
-  // descriptionListEl.textContent = scheduleItem;
   localStorage.setItem(scheduleId, scheduleItem);
 }
 
@@ -37,25 +36,25 @@ function renderSavedTasks() {
   var task12Box = $("#12");
   task12Box.val(task12);
 
-  var task1 = localStorage.getItem("1");
-  var task1Box = $("#1");
-  task1Box.val(task1);
+  var task13 = localStorage.getItem("13");
+  var task13Box = $("#13");
+  task13Box.val(task13);
 
-  var task2 = localStorage.getItem("2");
-  var task2Box = $("#2");
-  task2Box.val(task2);
+  var task14 = localStorage.getItem("14");
+  var task14Box = $("#14");
+  task14Box.val(task14);
 
-  var task3 = localStorage.getItem("3");
-  var task3Box = $("#3");
-  task3Box.val(task3);
+  var task15 = localStorage.getItem("15");
+  var task15Box = $("#15");
+  task15Box.val(task15);
 
-  var task4 = localStorage.getItem("4");
-  var task4Box = $("#4");
-  task4Box.val(task4);
+  var task16 = localStorage.getItem("16");
+  var task16Box = $("#16");
+  task16Box.val(task16);
 
-  var task5 = localStorage.getItem("5");
-  var task5Box = $("#5");
-  task5Box.val(task5);
+  var task17 = localStorage.getItem("17");
+  var task17Box = $("#17");
+  task17Box.val(task17);
 }
 
 renderSavedTasks();
