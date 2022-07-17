@@ -5,6 +5,9 @@ $('#currentDay').text(currentDate);
 // Identifies what hour it is currently 
 var currentTime = moment().format("H");
 
+// Created description box array
+var descriptionBoxes = $('.description');
+
 // Creates save buttons array
 var saveButtons = $('.saveBtn');
 
@@ -18,11 +21,27 @@ function handleFormSubmit(event) {
   localStorage.setItem(scheduleId, scheduleItem);
 }
 
+// Helper function that identifies which time slots occurred in the past present or future
+function pastPresentFuture(descriptionArray) {
+  for (let i = 0; i < descriptionArray.length; i++) {
+    var timeSlot = descriptionArray[i];
+    var timeSlotId = $(timeSlot).attr("id");
+    if (timeSlotId > currentTime) {
+      $(timeSlot).addClass("future");
+    } else if (timeSlotId == currentTime) {
+      $(timeSlot).addClass("present");
+    } else if (timeSlotId < currentTime) {
+      $(timeSlot).addClass("past");
+    }
+  }
+}
+
+
 function renderSavedTasks() {
   // Retrieves all local storage from the boxes and sets them as values for their respective boxes
-  var task9 = localStorage.getItem("9");
-  var task9Box = $("#9");
-  task9Box.val(task9);
+  var task09 = localStorage.getItem("09");
+  var task09Box = $("#09");
+  task09Box.val(task09);
 
   var task10 = localStorage.getItem("10");
   var task10Box = $("#10");
@@ -58,6 +77,7 @@ function renderSavedTasks() {
 }
 
 renderSavedTasks();
+pastPresentFuture(descriptionBoxes);
 saveButtons.on('click', handleFormSubmit);
 
 
